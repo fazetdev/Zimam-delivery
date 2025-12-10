@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import RTL styles */
+@import './rtl.css';
+
+/* Import custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --foreground-rgb: 23, 23, 23;
+  --background-rgb: 250, 250, 250;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 250, 250, 250;
+    --background-rgb: 23, 23, 23;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom utility classes */
+@layer utilities {
+  /* Text styles */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-gulf;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Layout */
+  .container-narrow {
+    @apply max-w-6xl mx-auto px-4;
+  }
+  
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4;
+  }
+  
+  /* Shadows */
+  .shadow-soft {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .shadow-medium {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  .shadow-hard {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Glass morphism */
+  .glass {
+    @apply backdrop-blur-md bg-white/80 border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-md bg-black/30 border border-white/10;
+  }
+  
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-ocean text-white font-semibold rounded-xl 
+           hover:shadow-medium transition-all duration-300 
+           hover:scale-105 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-gradient-sand text-gray-800 font-semibold rounded-xl 
+           hover:shadow-medium transition-all duration-300 
+           hover:scale-105 active:scale-95;
+  }
+  
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl shadow-soft border border-gray-100 
+           hover:shadow-hard transition-all duration-300 
+           hover:-translate-y-1;
+  }
+  
+  .card-glass {
+    @apply glass rounded-2xl shadow-soft 
+           hover:shadow-hard transition-all duration-300 
+           hover:-translate-y-1;
+  }
+  
+  /* Inputs */
+  .input-modern {
+    @apply w-full px-4 py-3 bg-gray-50 border border-gray-200 
+           rounded-xl focus:outline-none focus:ring-2 
+           focus:ring-primary-500 focus:border-transparent 
+           transition-all duration-200;
+  }
+  
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full 
+           text-sm font-medium;
+  }
+  
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-danger {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  .badge-info {
+    @apply bg-blue-100 text-blue-800;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-500 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-600;
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-primary-500 text-white;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Better touch targets */
+  button, a, input, select, textarea {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Prevent zoom on input */
+  input, select, textarea {
+    font-size: 16px;
+  }
+  
+  /* Smoother transitions */
+  * {
+    transition-duration: 200ms;
+  }
+}
+
+/* Arabic specific styles */
+[dir="rtl"] {
+  /* Add any RTL specific overrides */
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: black !important;
+    background: white !important;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+}
