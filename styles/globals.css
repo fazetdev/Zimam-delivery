@@ -1,761 +1,157 @@
-/* styles/globals.css */
+/* styles/globals.css - Gulf Luxury Optimized */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 
-/* Gulf Luxury Design System - Tailwind CSS Extension */
-
-/* Base styles with Gulf market optimization */
+/* Base styles */
 @layer base {
   :root {
-    /* Gulf Luxury Color Palette */
-    --color-gold-50: #fffdf0;
-    --color-gold-100: #fff9d9;
-    --color-gold-200: #fff1b3;
-    --color-gold-300: #ffe680;
-    --color-gold-400: #ffd700; /* 24K Gold */
-    --color-gold-500: #ffc107;
-    --color-gold-600: #e6a800;
-    --color-gold-700: #cc9600;
-    --color-gold-800: #b38500;
-    --color-gold-900: #996b00;
-    
-    --color-navy-50: #f8fafc;
-    --color-navy-100: #f1f5f9;
-    --color-navy-200: #e2e8f0;
-    --color-navy-300: #cbd5e1;
-    --color-navy-400: #94a3b8;
-    --color-navy-500: #64748b;
-    --color-navy-600: #475569;
-    --color-navy-700: #334155;
-    --color-navy-800: #1e293b;
-    --color-navy-900: #0f172a; /* Gulf Navy */
-    
-    --color-emerald-50: #ecfdf5;
-    --color-emerald-100: #d1fae5;
-    --color-emerald-200: #a7f3d0;
-    --color-emerald-300: #6ee7b7;
-    --color-emerald-400: #34d399;
-    --color-emerald-500: #10b981; /* Gulf Emerald */
-    --color-emerald-600: #059669;
-    --color-emerald-700: #047857;
-    --color-emerald-800: #065f46;
-    --color-emerald-900: #064e3b;
-    
-    --color-rose-50: #fff1f2;
-    --color-rose-100: #ffe4e6;
-    --color-rose-200: #fecdd3;
-    --color-rose-300: #fda4af;
-    --color-rose-400: #fb7185;
-    --color-rose-500: #f43f5e; /* Gulf Crimson */
-    --color-rose-600: #e11d48;
-    --color-rose-700: #be123c;
-    --color-rose-800: #9f1239;
-    --color-rose-900: #881337;
-    
-    /* Gulf Luxury Gradients */
-    --gradient-gulf: linear-gradient(135deg, var(--color-gold-400) 0%, #0ea5e9 33%, var(--color-emerald-500) 66%, #8b5cf6 100%);
-    --gradient-ocean: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, var(--color-emerald-500) 100%);
-    --gradient-sand: linear-gradient(135deg, var(--color-gold-500) 0%, #f59e0b 50%, #d97706 100%);
-    --gradient-emerald: linear-gradient(135deg, var(--color-emerald-500) 0%, var(--color-emerald-400) 100%);
-    --gradient-rose: linear-gradient(135deg, var(--color-rose-500) 0%, #f472b6 100%);
-    --gradient-gold: linear-gradient(135deg, var(--color-gold-400) 0%, var(--color-gold-300) 100%);
-    
-    /* Animation Speeds */
-    --animation-float: float 6s ease-in-out infinite;
-    --animation-shimmer: shimmer 2s infinite;
-    --animation-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    --animation-fadeIn: fadeIn 0.3s ease-out;
-    --animation-slideUp: slideUp 0.3s ease-out;
-    --animation-scaleIn: scaleIn 0.2s ease-out;
+    /* CSS variables for design tokens */
+    --color-gold: 255, 215, 0;
+    --color-emerald: 16, 185, 129;
+    --color-navy: 15, 23, 42;
+    --color-rose: 244, 63, 94;
   }
-  
+
   * {
-    @apply border-border;
+    @apply antialiased;
   }
-  
+
   html {
     @apply scroll-smooth;
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   body {
-    @apply bg-gradient-to-br from-gray-50 via-white to-emerald-50 dark:from-gray-900 dark:via-navy-900 dark:to-gray-950 text-gray-900 dark:text-gray-100;
+    @apply bg-gradient-to-br from-gray-50 via-white to-emerald-50 
+           dark:from-gray-900 dark:via-navy-900 dark:to-gray-950 
+           text-gray-900 dark:text-gray-100;
     font-feature-settings: 'rlig' 1, 'calt' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
   }
-  
-  /* Gulf-specific font optimization */
+
+  /* RTL support */
   body:lang(ar) {
-    font-family: 'Noto Sans Arabic', 'Segoe UI', system-ui, sans-serif;
-    letter-spacing: 0;
+    font-family: 'Noto Sans Arabic', sans-serif;
   }
-  
+
   body:lang(en) {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', sans-serif;
   }
-  
-  /* Selection styling - Gold theme */
+
+  /* Selection styling */
   ::selection {
     @apply bg-gold-400/30 text-gray-900 dark:text-white;
   }
-  
-  ::-moz-selection {
-    @apply bg-gold-400/30 text-gray-900 dark:text-white;
-  }
-  
-  /* Scrollbar - Luxury Gulf Styling */
+
+  /* Scrollbar styling */
   ::-webkit-scrollbar {
     @apply w-2;
   }
-  
+
   ::-webkit-scrollbar-track {
-    @apply bg-gray-100/50 dark:bg-gray-900/50 backdrop-blur-sm;
+    @apply bg-gray-100/50 dark:bg-gray-900/50;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     @apply bg-gradient-to-b from-gold-400 to-amber-400 rounded-full;
   }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    @apply from-gold-500 to-amber-500;
-  }
-  
-  /* Custom focus rings */
-  :focus-visible {
-    @apply outline-none ring-2 ring-gold-400 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
-  }
-  
-  /* Better image rendering */
-  img {
-    @apply select-none;
-  }
 }
 
-/* Component layer - Gulf Luxury Design System */
+/* Component layer - Only essential utilities */
 @layer components {
-  /* ========== TYPOGRAPHY ========== */
-  .text-gulf-gradient {
-    @apply bg-gradient-gulf bg-clip-text text-transparent;
-  }
-  
-  .text-ocean-gradient {
-    @apply bg-gradient-ocean bg-clip-text text-transparent;
-  }
-  
-  .text-gold-gradient {
-    @apply bg-gradient-to-r from-gold-400 to-amber-400 bg-clip-text text-transparent;
-  }
-  
-  .text-emerald-gradient {
-    @apply bg-gradient-to-r from-emerald-500 to-green-400 bg-clip-text text-transparent;
-  }
-  
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  .text-pretty {
-    text-wrap: pretty;
-  }
-  
-  /* ========== LAYOUT ========== */
-  .container-gulf {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-  
-  .container-narrow {
-    @apply max-w-6xl mx-auto px-4;
-  }
-  
-  .container-wide {
-    @apply max-w-8xl mx-auto px-4;
-  }
-  
-  .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  
-  .safe-area-top {
-    padding-top: env(safe-area-inset-top);
-  }
-  
-  /* ========== SHADOWS ========== */
-  .shadow-soft {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  }
-  
-  .shadow-medium {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  }
-  
-  .shadow-hard {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  }
-  
-  .shadow-luxury {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-  }
-  
-  .shadow-inner-soft {
-    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-  }
-  
-  .shadow-glow-gold {
-    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-  }
-  
-  .shadow-glow-emerald {
-    box-shadow: 0 0 40px rgba(16, 185, 129, 0.2);
-  }
-  
-  .shadow-glow-rose {
-    box-shadow: 0 0 40px rgba(244, 63, 94, 0.2);
-  }
-  
-  /* ========== GLASS MORPHISM ========== */
-  .glass {
-    @apply backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border border-white/40 dark:border-gray-800/40;
-  }
-  
-  .glass-emerald {
-    @apply backdrop-blur-xl bg-emerald-500/10 border border-emerald-400/20;
-  }
-  
-  .glass-gold {
-    @apply backdrop-blur-xl bg-gold-500/10 border border-gold-400/20;
-  }
-  
-  .glass-rose {
-    @apply backdrop-blur-xl bg-rose-500/10 border border-rose-400/20;
-  }
-  
-  .glass-navy {
-    @apply backdrop-blur-xl bg-navy-900/80 border border-navy-800/60;
-  }
-  
-  /* ========== BUTTONS ========== */
-  .btn-gold {
-    @apply px-6 py-3 bg-gradient-to-r from-gold-400 to-amber-400 text-gray-900 font-bold rounded-2xl 
-           hover:from-gold-500 hover:to-amber-500 hover:shadow-2xl hover:shadow-gold-500/30 
-           active:scale-95 transition-all duration-300 transform hover:-translate-y-0.5 
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none;
-  }
-  
-  .btn-emerald {
-    @apply px-6 py-3 bg-gradient-to-r from-emerald-500 to-green-400 text-white font-bold rounded-2xl 
-           hover:from-emerald-600 hover:to-green-500 hover:shadow-2xl hover:shadow-emerald-500/30 
-           active:scale-95 transition-all duration-300 transform hover:-translate-y-0.5 
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none;
-  }
-  
-  .btn-rose {
-    @apply px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-400 text-white font-bold rounded-2xl 
-           hover:from-rose-600 hover:to-pink-500 hover:shadow-2xl hover:shadow-rose-500/30 
-           active:scale-95 transition-all duration-300 transform hover:-translate-y-0.5 
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none;
-  }
-  
-  .btn-ocean {
-    @apply px-6 py-3 bg-gradient-ocean text-white font-bold rounded-2xl 
-           hover:shadow-2xl hover:shadow-blue-500/30 
-           active:scale-95 transition-all duration-300 transform hover:-translate-y-0.5 
-           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none;
-  }
-  
-  .btn-secondary {
-    @apply px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-bold rounded-2xl 
-           border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 
-           active:scale-95 transition-all duration-300 transform hover:-translate-y-0.5;
-  }
-  
-  .btn-ghost {
-    @apply px-6 py-3 bg-transparent text-gray-700 dark:text-gray-300 font-medium rounded-2xl 
-           hover:bg-gray-100 dark:hover:bg-gray-800 
-           active:scale-95 transition-all duration-300;
-  }
-  
-  /* Floating Action Buttons */
-  .fab-gold {
-    @apply w-14 h-14 bg-gradient-to-br from-gold-400 to-amber-400 rounded-2xl shadow-2xl shadow-gold-500/40 
-           hover:shadow-3xl hover:shadow-gold-500/60 hover:scale-110 active:scale-95 
-           transition-all duration-300 flex items-center justify-center text-white;
-  }
-  
-  .fab-emerald {
-    @apply w-14 h-14 bg-gradient-to-br from-emerald-500 to-green-400 rounded-2xl shadow-2xl shadow-emerald-500/40 
-           hover:shadow-3xl hover:shadow-emerald-500/60 hover:scale-110 active:scale-95 
-           transition-all duration-300 flex items-center justify-center text-white;
-  }
-  
-  .fab-rose {
-    @apply w-14 h-14 bg-gradient-to-br from-rose-500 to-pink-400 rounded-2xl shadow-2xl shadow-rose-500/40 
-           hover:shadow-3xl hover:shadow-rose-500/60 hover:scale-110 active:scale-95 
-           transition-all duration-300 flex items-center justify-center text-white;
-  }
-  
-  /* ========== CARDS ========== */
+  /* Luxury card - Reusable pattern */
   .card-luxury {
-    @apply bg-gradient-to-br from-white/95 to-gray-50/95 dark:from-gray-900/95 dark:to-navy-900/95 
-           backdrop-blur-xl rounded-3xl border border-white/40 dark:border-gray-800/40 
-           shadow-2xl hover:shadow-luxury hover:-translate-y-1 transition-all duration-500;
+    @apply bg-gradient-to-br from-white/95 to-gray-50/95 
+           dark:from-gray-900/95 dark:to-navy-900/95 
+           backdrop-blur-xl rounded-3xl border border-white/40 
+           dark:border-gray-800/40 shadow-2xl 
+           hover:shadow-luxury transition-all duration-300;
   }
-  
-  .card-glass {
-    @apply glass rounded-3xl shadow-2xl hover:shadow-luxury hover:-translate-y-1 transition-all duration-500;
+
+  /* Glass effect */
+  .glass {
+    @apply backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 
+           border border-white/40 dark:border-gray-800/40;
   }
-  
-  .card-gold {
-    @apply bg-gradient-to-br from-gold-50/90 to-amber-50/90 dark:from-gold-900/20 dark:to-amber-900/20 
-           backdrop-blur-xl rounded-3xl border border-gold-200/50 dark:border-gold-800/30 
-           shadow-2xl hover:shadow-luxury hover:-translate-y-1 transition-all duration-500;
+
+  /* Gradient text utilities */
+  .text-gold-gradient {
+    @apply bg-gradient-to-r from-gold-400 to-amber-400 
+           bg-clip-text text-transparent;
   }
-  
-  .card-emerald {
-    @apply bg-gradient-to-br from-emerald-50/90 to-green-50/90 dark:from-emerald-900/20 dark:to-green-900/20 
-           backdrop-blur-xl rounded-3xl border border-emerald-200/50 dark:border-emerald-800/30 
-           shadow-2xl hover:shadow-luxury hover:-translate-y-1 transition-all duration-500;
-  }
-  
-  .card-rose {
-    @apply bg-gradient-to-br from-rose-50/90 to-pink-50/90 dark:from-rose-900/20 dark:to-pink-900/20 
-           backdrop-blur-xl rounded-3xl border border-rose-200/50 dark:border-rose-800/30 
-           shadow-2xl hover:shadow-luxury hover:-translate-y-1 transition-all duration-500;
-  }
-  
-  /* ========== INPUTS ========== */
-  .input-luxury {
-    @apply w-full px-5 py-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-xl rounded-2xl 
-           border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white 
-           placeholder-gray-500 dark:placeholder-gray-400 text-lg font-medium 
-           focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:border-transparent 
-           transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-  
-  .input-gold {
-    @apply input-luxury focus:ring-gold-500/50;
-  }
-  
-  .input-emerald {
-    @apply input-luxury focus:ring-emerald-500/50;
-  }
-  
-  /* ========== BADGES ========== */
-  .badge-gold {
-    @apply inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-gold-500/20 to-amber-500/20 
-           text-gold-700 dark:text-gold-300 rounded-full text-sm font-bold border border-gold-500/30;
-  }
-  
-  .badge-emerald {
-    @apply inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-emerald-500/20 to-green-500/20 
-           text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-bold border border-emerald-500/30;
-  }
-  
-  .badge-rose {
-    @apply inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-rose-500/20 to-pink-500/20 
-           text-rose-700 dark:text-rose-300 rounded-full text-sm font-bold border border-rose-500/30;
-  }
-  
-  .badge-navy {
-    @apply inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-navy-900/20 to-blue-900/20 
-           text-navy-700 dark:text-navy-300 rounded-full text-sm font-bold border border-navy-700/30;
-  }
-  
-  /* ========== AVATARS ========== */
-  .avatar-gold {
-    @apply w-12 h-12 bg-gradient-to-br from-gold-400 to-amber-400 rounded-2xl 
-           flex items-center justify-center text-white shadow-lg;
-  }
-  
-  .avatar-emerald {
-    @apply w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-400 rounded-2xl 
-           flex items-center justify-center text-white shadow-lg;
-  }
-  
-  .avatar-rose {
-    @apply w-12 h-12 bg-gradient-to-br from-rose-500 to-pink-400 rounded-2xl 
-           flex items-center justify-center text-white shadow-lg;
-  }
-  
-  /* ========== LOADING ========== */
-  .loading-gold {
-    @apply border-4 border-gold-500 border-t-transparent rounded-full animate-spin;
-  }
-  
-  .loading-emerald {
-    @apply border-4 border-emerald-500 border-t-transparent rounded-full animate-spin;
-  }
-  
-  /* ========== DIVIDERS ========== */
-  .divider-gold {
-    @apply h-px bg-gradient-to-r from-transparent via-gold-400/50 to-transparent;
-  }
-  
-  .divider-emerald {
-    @apply h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent;
-  }
-  
-  /* ========== PROGRESS BARS ========== */
-  .progress-gold {
-    @apply w-full h-2 bg-gold-100 dark:bg-gold-900/30 rounded-full overflow-hidden;
-  }
-  
-  .progress-gold-fill {
-    @apply h-full bg-gradient-to-r from-gold-400 to-amber-400 rounded-full transition-all duration-500;
-  }
-  
-  .progress-emerald {
-    @apply w-full h-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-full overflow-hidden;
-  }
-  
-  .progress-emerald-fill {
-    @apply h-full bg-gradient-to-r from-emerald-500 to-green-400 rounded-full transition-all duration-500;
+
+  .text-emerald-gradient {
+    @apply bg-gradient-to-r from-emerald-500 to-green-400 
+           bg-clip-text text-transparent;
   }
 }
 
-/* Utility layer - Gulf Luxury Utilities */
+/* Utility layer - Animation keyframes only */
 @layer utilities {
-  /* ========== ANIMATIONS ========== */
+  /* Animation keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Animation utilities */
   .animate-float {
-    animation: var(--animation-float);
+    animation: float 6s ease-in-out infinite;
   }
-  
+
   .animate-shimmer {
-    animation: var(--animation-shimmer);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
   }
-  
-  .animate-pulse-slow {
-    animation: var(--animation-pulse-slow);
-  }
-  
+
   .animate-fadeIn {
-    animation: var(--animation-fadeIn);
+    animation: fadeIn 0.3s ease-out;
   }
-  
+
   .animate-slideUp {
-    animation: var(--animation-slideUp);
+    animation: slideUp 0.3s ease-out;
   }
-  
-  .animate-scaleIn {
-    animation: scaleIn 0.2s ease-out;
-  }
-  
+
+  /* Animation delays */
   .animation-delay-1000 {
     animation-delay: 1s;
   }
-  
+
   .animation-delay-2000 {
     animation-delay: 2s;
-  }
-  
-  .animation-delay-3000 {
-    animation-delay: 3s;
-  }
-  
-  /* ========== GRADIENTS ========== */
-  .bg-gradient-gulf {
-    background: var(--gradient-gulf);
-  }
-  
-  .bg-gradient-ocean {
-    background: var(--gradient-ocean);
-  }
-  
-  .bg-gradient-sand {
-    background: var(--gradient-sand);
-  }
-  
-  .bg-gradient-emerald {
-    background: var(--gradient-emerald);
-  }
-  
-  .bg-gradient-rose {
-    background: var(--gradient-rose);
-  }
-  
-  .bg-gradient-gold {
-    background: var(--gradient-gold);
-  }
-  
-  /* ========== TEXT ========== */
-  .text-shadow-sm {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  }
-  
-  .text-shadow-md {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .text-shadow-lg {
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* ========== TRANSFORMS ========== */
-  .rotate-y-180 {
-    transform: rotateY(180deg);
-  }
-  
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-  
-  .backface-hidden {
-    backface-visibility: hidden;
-  }
-  
-  /* ========== BLEND MODES ========== */
-  .blend-multiply {
-    mix-blend-mode: multiply;
-  }
-  
-  .blend-screen {
-    mix-blend-mode: screen;
-  }
-  
-  .blend-overlay {
-    mix-blend-mode: overlay;
-  }
-  
-  /* ========== MASKING ========== */
-  .mask-gradient {
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  }
-  
-  /* ========== BACKDROP ========== */
-  .backdrop-blur-xxl {
-    backdrop-filter: blur(40px);
-  }
-  
-  /* ========== FLEX/GRID ========== */
-  .grid-auto-fit {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-  
-  .grid-auto-fill {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-  
-  /* ========== INTERACTION ========== */
-  .tap-highlight-none {
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  .select-none {
-    user-select: none;
-  }
-  
-  .select-text {
-    user-select: text;
-  }
-  
-  /* ========== SCROLL ========== */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .scrollbar-thin {
-    scrollbar-width: thin;
-  }
-  
-  /* ========== FILTERS ========== */
-  .filter-glow-gold {
-    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-  }
-  
-  .filter-glow-emerald {
-    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
-  }
-}
-
-/* Keyframe definitions */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-/* RTL-specific overrides */
-[dir="rtl"] {
-  /* RTL font optimization */
-  * {
-    text-align: right;
-  }
-  
-  /* RTL icon flipping */
-  .rtl-flip {
-    transform: scaleX(-1);
-  }
-  
-  /* RTL spacing adjustments */
-  .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 1;
   }
 }
 
 /* Mobile optimizations */
 @media (max-width: 640px) {
-  /* Better touch targets for Gulf market */
-  button,
-  a,
-  [role="button"],
-  input,
-  select,
-  textarea {
+  /* Better touch targets */
+  button, a, input, select, textarea {
     min-height: 44px;
     min-width: 44px;
   }
-  
-  /* Prevent zoom on input for better UX */
-  input,
-  select,
-  textarea {
+
+  /* Prevent zoom on input */
+  input, select, textarea {
     font-size: 16px;
-  }
-  
-  /* Smoother transitions on mobile */
-  * {
-    transition-duration: 200ms !important;
-  }
-  
-  /* Reduce blur on mobile for performance */
-  .backdrop-blur-xl {
-    backdrop-filter: blur(20px);
-  }
-}
-
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-  
-  body {
-    font-size: 12pt;
-    line-height: 1.5;
-    color: #000 !important;
-    background: #fff !important;
-  }
-  
-  a {
-    text-decoration: underline;
-  }
-  
-  .card-luxury,
-  .card-glass {
-    box-shadow: none !important;
-    border: 1px solid #ddd !important;
-    background: #fff !important;
-  }
-  
-  /* Hide decorative elements for print */
-  .bg-gradient-gulf,
-  .bg-gradient-ocean,
-  .bg-gradient-sand {
-    background: #fff !important;
-  }
-  
-  .text-gold-gradient,
-  .text-emerald-gradient,
-  .text-gulf-gradient {
-    color: #000 !important;
-  }
-}
-
-/* High-contrast mode support */
-@media (prefers-contrast: high) {
-  .btn-gold,
-  .btn-emerald,
-  .btn-rose {
-    border: 2px solid currentColor;
-  }
-  
-  .input-luxury {
-    border: 2px solid currentColor;
-  }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Safari-specific fixes */
-@supports (-webkit-touch-callout: none) {
-  .h-screen {
-    height: -webkit-fill-available;
-  }
-  
-  .min-h-screen {
-    min-height: -webkit-fill-available;
-  }
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-color: theme('colors.gold.400') theme('colors.gray.100');
-}
-
-/* Dark mode Firefox scrollbar */
-@media (prefers-color-scheme: dark) {
-  * {
-    scrollbar-color: theme('colors.gold.500') theme('colors.gray.900');
   }
 }
