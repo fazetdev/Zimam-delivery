@@ -11,7 +11,6 @@ export default function SettingsPage() {
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => setIsClient(true), [])
-
   if (!isClient) return null
 
   const toggleLanguage = () => setLanguage(language === 'ar' ? 'en' : 'ar')
@@ -23,6 +22,7 @@ export default function SettingsPage() {
       icon: Globe,
       action: toggleLanguage,
       value: language === 'ar' ? 'العربية' : 'English',
+      toggle: false,
     },
     {
       title: language === 'ar' ? 'الوضع المظلم' : 'Dark Mode',
@@ -47,147 +47,158 @@ export default function SettingsPage() {
       title: language === 'ar' ? 'تصدير البيانات' : 'Export Data',
       subtitle: language === 'ar' ? 'حفظ نسخة احتياطية' : 'Backup your data',
       icon: Download,
-      color: 'text-blue-600 bg-blue-100',
+      color: 'bg-emerald-500/15 text-emerald-400',
     },
     {
       title: language === 'ar' ? 'مسح البيانات' : 'Clear Data',
       subtitle: language === 'ar' ? 'حذف جميع السجلات' : 'Delete all records',
       icon: Trash2,
-      color: 'text-red-600 bg-red-100',
+      color: 'bg-red-500/15 text-red-400',
     },
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="w-full min-h-screen bg-white md:max-w-md md:mx-auto shadow-lg relative">
+    <div className="w-full min-h-screen bg-slate-900 text-white">
+      <div dir={language === 'ar' ? 'rtl' : 'ltr'} className="pb-20 max-w-2xl mx-auto">
         <Header />
 
-        <main className="pb-20 px-4 pt-4">
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-800">
+        <main className="px-5 py-6 space-y-10">
+          {/* HEADER TEXT */}
+          <div className="text-center">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-emerald-600 text-transparent bg-clip-text">
               {language === 'ar' ? 'الإعدادات' : 'Settings'}
             </h1>
-            <p className="text-gray-600 mt-1">
+            <p className="text-gray-400 mt-1">
               {language === 'ar' ? 'تخصيص تطبيقك' : 'Customize your app'}
             </p>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+          {/* APP SETTINGS */}
+          <div className="space-y-5">
+            <h2 className="text-xl font-semibold text-emerald-400">
               {language === 'ar' ? 'إعدادات التطبيق' : 'App Settings'}
             </h2>
 
-            <div className="bg-white rounded-xl shadow border border-gray-100 overflow-hidden">
+            <div className="bg-slate-800/40 backdrop-blur-xl rounded-2xl p-4 divide-y divide-white/5 shadow-lg">
               {settings.map((setting, index) => {
                 const Icon = setting.icon
                 return (
-                  <div key={setting.title} className={`px-4 py-4 ${index !== settings.length - 1 ? 'border-b border-gray-100' : ''}`}>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div className={`p-2 rounded-lg mr-3 ${setting.toggle ? 'bg-purple-100' : 'bg-blue-100'}`}>
-                          <Icon size={20} className={setting.toggle ? 'text-purple-600' : 'text-blue-600'} />
-                        </div>
-                        <div>
-                          <p className="font-medium text-gray-800">{setting.title}</p>
-                          <p className="text-sm text-gray-600">{setting.subtitle}</p>
-                        </div>
+                  <div key={setting.title} className="py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-slate-700/40 shadow-inner">
+                        <Icon size={22} className="text-emerald-400" />
                       </div>
-
-                      {setting.toggle ? (
-                        <button
-                          onClick={setting.action}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full ${setting.value.includes('On') ? 'bg-blue-600' : 'bg-gray-300'}`}
-                        >
-                          <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${setting.value.includes('On') ? 'translate-x-6' : 'translate-x-1'}`} />
-                        </button>
-                      ) : (
-                        <button
-                          onClick={setting.action}
-                          className="px-4 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium hover:bg-gray-200"
-                        >
-                          {setting.value}
-                        </button>
-                      )}
+                      <div>
+                        <p className="font-medium">{setting.title}</p>
+                        <p className="text-gray-400 text-sm">{setting.subtitle}</p>
+                      </div>
                     </div>
+
+                    {setting.toggle ? (
+                      <button
+                        onClick={setting.action}
+                        className={`relative w-14 h-7 rounded-full transition bg-slate-600/40 shadow-inner 
+                        ${setting.value === 'On' || setting.value === 'مفعل' ? 'bg-emerald-500' : ''}`}
+                      >
+                        <span
+                          className={`absolute top-1 w-5 h-5 bg-white rounded-full transition 
+                          ${setting.value === 'On' || setting.value === 'مفعل' ? 'right-1' : 'left-1'}`}
+                        />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={setting.action}
+                        className="px-4 py-2 text-sm rounded-xl bg-slate-700/30 hover:bg-slate-700/50 transition"
+                      >
+                        {setting.value}
+                      </button>
+                    )}
                   </div>
                 )
               })}
             </div>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+          {/* DATA MANAGEMENT */}
+          <div className="space-y-5">
+            <h2 className="text-xl font-semibold text-emerald-400">
               {language === 'ar' ? 'إدارة البيانات' : 'Data Management'}
             </h2>
 
-            <div className="grid grid-cols-2 gap-4">
-              {dataManagement.map((item) => {
+            <div className="grid grid-cols-2 gap-5">
+              {dataManagement.map(item => {
                 const Icon = item.icon
                 return (
-                  <button key={item.title} className="bg-white rounded-xl p-4 shadow border border-gray-100 text-center hover:bg-gray-50 transition">
+                  <button
+                    key={item.title}
+                    className="bg-slate-800/40 backdrop-blur-xl rounded-2xl p-5 text-center shadow-md hover:scale-105 transition"
+                  >
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 ${item.color}`}>
                       <Icon size={24} />
                     </div>
-                    <p className="font-medium text-gray-800">{item.title}</p>
-                    <p className="text-sm text-gray-600">{item.subtitle}</p>
+                    <p className="font-medium">{item.title}</p>
+                    <p className="text-gray-400 text-sm">{item.subtitle}</p>
                   </button>
                 )
               })}
             </div>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold text-gray-800 mb-4">
+          {/* SECURITY */}
+          <div className="space-y-5">
+            <h2 className="text-xl font-semibold text-emerald-400">
               {language === 'ar' ? 'الأمان والخصوصية' : 'Security & Privacy'}
             </h2>
 
-            <div className="bg-white rounded-xl p-4 shadow border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-lg mr-3 bg-green-100">
-                  <Shield size={20} className="text-green-600" />
+            <div className="bg-slate-800/40 backdrop-blur-xl rounded-2xl p-6 shadow-xl space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-slate-700/40 flex items-center justify-center">
+                  <Shield size={22} className="text-emerald-400" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-800">
-                    {language === 'ar' ? 'حماية البيانات' : 'Data Protection'}
-                  </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="font-medium">{language === 'ar' ? 'حماية البيانات' : 'Data Protection'}</p>
+                  <p className="text-gray-400 text-sm">
                     {language === 'ar' ? 'بياناتك مخزنة محلياً فقط' : 'Your data is stored locally only'}
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">
+              <div className="grid grid-cols-3 gap-4 text-center">
+                <div className="bg-slate-700/30 rounded-xl p-3">
+                  <span className="text-gray-400 block text-sm">
                     {language === 'ar' ? 'عدد الطلبات المحفوظة' : 'Saved deliveries'}
                   </span>
-                  <span className="font-medium">24</span>
+                  <span className="text-xl font-bold">24</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">
+
+                <div className="bg-slate-700/30 rounded-xl p-3">
+                  <span className="text-gray-400 block text-sm">
                     {language === 'ar' ? 'إجمالي المعاملات' : 'Total transactions'}
                   </span>
-                  <span className="font-medium">156</span>
+                  <span className="text-xl font-bold">156</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-600">
+
+                <div className="bg-slate-700/30 rounded-xl p-3">
+                  <span className="text-gray-400 block text-sm">
                     {language === 'ar' ? 'آخر تحديث' : 'Last updated'}
                   </span>
-                  <span className="font-medium">{language === 'ar' ? 'اليوم' : 'Today'}</span>
+                  <span className="text-xl font-bold">{language === 'ar' ? 'اليوم' : 'Today'}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="text-center text-gray-500 text-sm">
-            <p>Zimam Delivery v1.0.0</p>
-            <p className="mt-1">
+          {/* VERSION INFO */}
+          <div className="text-center mt-10 opacity-80">
+            <p className="font-medium">Zimam Delivery v1.0.0</p>
+            <p className="text-gray-400 text-sm">
               {language === 'ar' ? 'مصمم خصيصاً لسائقي توصيل الخليج' : 'Designed specifically for Gulf delivery drivers'}
             </p>
           </div>
 
-          <button className="mt-8 w-full flex items-center justify-center py-3 bg-gray-100 text-gray-800 rounded-xl font-medium hover:bg-gray-200 transition">
-            <LogOut size={20} className="mr-2" />
+          {/* LOGOUT */}
+          <button className="w-full flex items-center justify-center gap-2 mt-6 py-3 rounded-2xl bg-red-500/20 text-red-400 hover:bg-red-500/30 transition font-semibold">
+            <LogOut size={20} />
             {language === 'ar' ? 'تسجيل الخروج' : 'Log Out'}
           </button>
         </main>
